@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Hotel Enmanuel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="http://127.0.0.1:4200/menu">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_reservaciones">Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_incidencia">Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_empleados">Empleados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/mantenimiento_usuarios">Gestión de Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_detalleres">Detalle Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_documentos">Documentos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/huespedincidencia">Huesped Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_niveles_accesos">Niveles de Acceso</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/">Tipo de Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/registro_usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Check-out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+   <div style= "text-align: center;margin: 10px">
+    <h4 text="text-muted">Sistema de Gestión de Hotel</h4>
+    <h6 text="text-muted">Sabanagrande, Francisco Morazán, Honduras</h6>
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Reservaciones</li>
+    </ol>
+  </nav>
+
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand"></a>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar Reservacion" aria-label="Search">
+    </form>
+  </nav>
+
+  <h1></h1>
+<div class="container-md border rounded">
+  <div class="container-md">
+  	<h4>Reservaciones</h4>
+  <form ngNativeValidate #form>
+	  <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="Identidad">Identidad</label>
+	      <input type="text" class="form-control" id="Identidad" [(ngModel)]="reservaciones.Identidad"
+	      required
+	      pattern="[0-9]+"
+	      maxlength="13" 
+	      [ngModelOptions]="{standalone:true}">
+	    </div>
+	    <div class="form-group col-md-6">
+	      <label for="selectEstadoReserva">Estado de la Reserva</label>
+	      <select name="Codigo_Estado_Reservacion"id="selectEstadoReserva" class="form-control" required
+	      		  [(ngModel)]="reservaciones.Cod_Estado_Reservacion"
+	      		  [ngModelOptions]="{standalone:true}">
+	        <option selected value="">Escoger...</option>
+	        <option *ngFor="let er of listado_estado_reserva"
+        	[value]="er.Cod_Estado_Reservacion">{{er.Descripcion}}
+	        </option>
+	      </select>
+	    </div>
+	  </div>
+	  <div class="form-row">
+	  <div class="form-group col-md-6">
+	    <label for="CantidadAdultos">Cantidad Adultos</label>
+	    <input type="text" class="form-control" id="CantidadAdultos" placeholder="0" [(ngModel)]="reservaciones.Cantidad_Adultos" required
+	    [ngModelOptions]="{standalone:true}">
+	  </div>
+	  <div class="form-group col-md-6">
+	    <label for="Cantidad_Ninos">Cantidad Niños</label>
+	    <input type="text" class="form-control" id="Cantidad_Ninos" placeholder="0" [(ngModel)]="reservaciones.Cantidad_Ninos" required
+	    [ngModelOptions]="{standalone:true}">
+	  </div>
+	  </div>
+	  <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="FechaIngreso">Fecha de Ingreso</label>
+	      <input type="date" class="form-control" id="FechaIngreso"required
+	      [(ngModel)]="reservaciones.Fecha_Ingreso"
+	      [ngModelOptions]="{standalone:true}">  
+	    </div>
+	    <div class="form-group col-md-6">
+	      <label for="FechaSalida">Fecha de Salida</label>
+	      <input type="date" class="form-control" id="FechaSalida" required 
+	      [(ngModel)]="reservaciones.Fecha_Salida"
+	      [ngModelOptions]="{standalone:true}">  
+	      </div>
+	    <div class="form-group col-md-6">
+	      <label for="selectEmpleados">Codigo Empleado</label>
+	      <select id="selectEmpleados" class="form-control" required
+	      		  [(ngModel)]="reservaciones.Cod_Empleado"
+	      		  [ngModelOptions]="{standalone:true}">
+	      	<option selected value="">Escoger...</option>
+	        <option *ngFor="let emp of listado_empleados"
+	        [value]="emp.Cod_Empleado">{{emp.Cod_Empleado}} {{emp.Nombres}} {{emp.Apellidos}}
+	        </option>
+	      </select>
+	    </div>
+	    <div class="form-group col-md-6">
+	      <label for="FechaReservacion">Fecha de Reservacion</label>
+	      <input type="date" class="form-control" id="FechaReservacion" required
+	      [(ngModel)]="reservaciones.Fecha_Reservacion"
+	      [ngModelOptions]="{standalone:true}">  
+	    </div>
+	  </div>
+	  <button style="width:100%; height:50%" (click)="form.checkValidity()? insert_reservaciones(): null" type="submit" class="btn btn-primary">Reservar</button>
+    <h1></h1>
+	</form>
+</div>
+ </div>
+ <div style= "text-align: center;margin: 10px">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Codigo Reservacion</th>
+				<th>Identidad</th>
+				<th>Codigo Estado Reservacion</th>
+				<th>Cantidad Adultos</th>
+				<th>Cantidad Niños</th>
+				<th>Fecha Ingreso</th>
+				<th>Fecha Salida</th>
+				<th>Codigo Empleado</th>
+				<th>Fecha Reservacion</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let x of listado_reservaciones">
+				<td>{{x.Cod_Reservacion}}</td>
+				<td>{{x.Identidad}}</td>
+				<td>{{x.Cod_Estado_Reservacion}}</td>
+				<td>{{x.Cantidad_Adultos}}</td>
+				<td>{{x.Cantidad_Ninos}}</td>
+				<td>{{x.Fecha_Ingreso}}</td>
+				<td>{{x.Fecha_Salida}}</td>
+				<td>{{x.Cod_Empleado}}</td>
+				<td>{{x.Fecha_Reservacion}}</td>
+				<td>
+				<button (click)="delete_reservaciones(x.Cod_Reservacion)" class="btn btn-danger">Borrar</button>
+
+				<button (click)= "onPreUpdateReservaciones(x)" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Modificar</button>
+				</td>
+			</tr>	
+	</tbody>
+	</table>
+	</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar Reservacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" required>Código</label>
+            <textarea class="form-control" id="message-text" [(ngModel)] = "reservaciones.Cod_Reservacion" [ngModelOptions]= "{standalone: true}" readonly></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" required>Identidad:</label>
+            <textarea class="form-control" id="message-text" [(ngModel)] = "reservaciones.Identidad" [ngModelOptions]= "{standalone: true}"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-body">
+      <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" required>Codigo Estado Reservacion</label>
+            <select name="Codigo_Estado_Reservacion"id="selectEstadoReserva" class="form-control" required
+	      		  [(ngModel)]="reservaciones.Cod_Estado_Reservacion"
+	      		  [ngModelOptions]="{standalone:true}">
+	        <option selected value="">Escoger...</option>
+	        <option *ngFor="let er of listado_estado_reserva"
+        	[value]="er.Cod_Estado_Reservacion">{{er.Descripcion}}
+	        </option>
+	      </select>
+          </div>
+      </form>
+  	  </div>
+  	  <div class="modal-body">
+      <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" required>Cantidad Adultos</label>
+            <textarea class="form-control" id="message-text" [(ngModel)] = "reservaciones.Cantidad_Adultos" [ngModelOptions]= "{standalone: true}" ></textarea>
+          </div>
+      </form>
+      </div>
+      <div class="modal-body">
+      <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" required>Cantidad Niños</label>
+            <textarea class="form-control" id="message-text" [(ngModel)] = "reservaciones.Cantidad_Ninos" [ngModelOptions]= "{standalone: true}" ></textarea>
+          </div>
+      </form>
+      </div>
+      <div class="modal-body">
+      <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" required>Fecha Ingreso</label>
+             <input type="date" class="form-control"  id="FechaIngreso"
+	      	[ngModel]="reservaciones.Fecha_Ingreso | date:'yyyy-MM-dd' : 'UTC'"  
+            (ngModelChange)="reservaciones.Fecha_Ingreso = $event"
+	        [ngModelOptions]="{standalone:true}"> 
+          </div>
+      </form>
+      </div>
+      <div class="modal-body">
+      <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" required>Fecha Salida</label>
+            <input  type="date" class="form-control" id="message-text" 
+             [ngModel]="reservaciones.Fecha_Salida | date:'yyyy-MM-dd' : 'UTC'"  
+             (ngModelChange)="reservaciones.Fecha_Salida = $event"
+              [ngModelOptions]= "{standalone: true}" >
+          </div>
+      </form>
+      </div>
+      <div class="modal-body">
+      <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" required>Empleado</label>
+            <select id="selectEmpleados" class="form-control" required
+	      		  [(ngModel)]="reservaciones.Cod_Empleado"
+	      		  [ngModelOptions]="{standalone:true}">
+	      	<option selected value="">Escoger...</option>
+	        <option *ngFor="let emp of listado_empleados"
+	        [value]="emp.Cod_Empleado">{{emp.Cod_Empleado}} {{emp.Nombres}} {{emp.Apellidos}}
+	        </option>
+	      </select>
+          </div>
+      </form>
+      </div>
+      <div class="modal-body">
+      <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" required>Fecha Reservacion</label>
+            <input  type="date" class="form-control" id="message-text" 
+             [ngModel]="reservaciones.Fecha_Reservacion | date:'yyyy-MM-dd' : 'UTC'"  
+             (ngModelChange)="reservaciones.Fecha_Reservacion = $event"
+             [ngModelOptions]= "{standalone: true}">
+          </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" (click)= "update_reservaciones(reservaciones.Cod_Reservacion)"class="btn btn-primary">Aplicar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</html>
+
+
+

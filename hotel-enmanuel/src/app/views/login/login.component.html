@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Hotel Enmanuel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Empleados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Gestión de Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Check-out</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">FAQ</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div style= "text-align: center;margin: 10px">
+    <h4 text="text-muted">Sistema de Gestión de Hotel</h4>
+    <h6 text="text-muted">Sabanagrande, Francisco Morazán, Honduras</h6>
+  </div>
+   <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Nos alegra verte de nuevo</li>
+    </ol>
+  </nav>
+  <div style= "text-align: center;margin: 25px">
+    <h4 text="text-muted">Inicio de Sesión</h4>
+  </div>
+
+<div class = row>
+
+</div>
+<div class="container-sm border rounded">
+  <div class="row">
+    <div class="col-8">
+    <div class="col-8 offset-5">
+<form class="form_container" #login_form="ngForm" novalidate="novalidate" autocomplete="off">
+  <div style="text-align:center;margin:10px">
+  
+  <div class="form-group">
+    <div style = "margin:50px">
+    <label for="inputNombreUsuario">Nombre Usuario</label>
+    <input type="text"
+    class="form-control form-control-lg inverse-mode login-input" 
+    id="Nombre_Usuario"
+    name="Nombre_Usuario"
+    #Nombre_Usuario="ngModel"
+    [(ngModel)]="login_data.Nombre_Usuario"
+    required="true"> 
+    <p *ngIf="Nombre_Usuario.errors && Nombre_Usuario.errors.required&& submitted"
+    class="login-error-text" style="border: none; color:blue;"><i class="fa fa-exclamation-circle
+    login-error-icon"></i>
+  El usuario es requerido</p>
+  </div>
+  </div>
+  
+  <div class="form-group">
+    <div style = "margin:50px">
+    <label for="inputContrasena">Contraseña</label>
+    <input type="password"
+    class="form-control form-control-lg inverse-mode login-input" 
+    id="Contrasena"
+    name="Contrasena"
+    #Contrasena="ngModel"
+    [(ngModel)]="login_data.Contrasena"
+    required="true"> 
+    <p *ngIf="Contrasena.errors && Contrasena.errors.required&& submitted"
+    class="login-error-text" style="border: none; color:blue;"><i class="fa fa-exclamation-circle
+    login-error-icon"></i>
+  La contraseña es requerida</p>
+  </div>
+  </div>
+
+  <div class="login-buttons">
+  <button type="submit" (click)="login()" class="btn btn-primary"
+  [disabled]=loading>
+  <span *ngIf="!loading"><i class="fa fa-sign-in-alt"></i>Iniciar Sesión</span>
+  <span *ngIf="loading"><i class="fa fa-sign-in-alt"></i>Iniciando...</span>
+  </button>
+  </div>
+
+  <div div style="text-align:center;margin:10px">
+  <button type="success" class="btn btn-success" (click)="registro()">Crea una cuenta nueva</button> 
+  </div>
+
+  </div>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+</html>

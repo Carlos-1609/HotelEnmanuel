@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Hotel Enmanuel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="http://127.0.0.1:4200/menu">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_reservaciones">Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_incidencia">Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_empleados">Empleados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/mantenimiento_usuarios">Gestión de Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_detalleres">Detalle Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_documentos">Documentos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/huespedincidencia">Huesped Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_niveles_accesos">Niveles de Acceso</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/">Tipo de Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/registro_usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Check-out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+   <div style= "text-align: center;margin: 10px">
+    <h4 text="text-muted">Sistema de Gestión de Hotel</h4>
+    <h6 text="text-muted">Sabanagrande, Francisco Morazán, Honduras</h6>
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Reservaciones</li>
+    </ol>
+  </nav>
+
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand"></a>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar Reservacion" aria-label="Search">
+    </form>
+  </nav>
+
+  <h1></h1>
+<div class="container-md border rounded">
+  <div class="container-md">
+  	<h4>Reservaciones</h4>
+  <form>
+	  <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="inputEmail4">Identidad</label>
+	      <input type="email" class="form-control" id="inputEmail4">
+	    </div>
+	    <div class="form-group col-md-6">
+	      <label for="inputState">Estado de la Reserva</label>
+	      <select id="inputState" class="form-control">
+	        <option selected>Escoger...</option>
+	        <option>...</option>
+	      </select>
+	    </div>
+	  </div>
+	  <div class="form-row">
+	  <div class="form-group col-md-6">
+	    <label for="inputAddress">Cantidad Adultos</label>
+	    <input type="text" class="form-control" id="inputAddress" placeholder="0">
+	  </div>
+	  <div class="form-group col-md-6">
+	    <label for="inputAddress2">Cantidad Niños</label>
+	    <input type="text" class="form-control" id="inputAddress2" placeholder="0">
+	  </div>
+	  </div>
+	  <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="FechaSalida">Fecha de Ingreso</label>
+	      <input type="date" class="form-control" id="inputCity" required
+	      [(ngModel)]="FechaSalida"
+	      [ngModelOptions]="{standalone:true}">  
+	    </div>
+	    <div class="form-group col-md-6">
+	      <label for="FechaSalida">Fecha de Salida</label>
+	      <input type="date" class="form-control" id="inputCity" required
+	      [(ngModel)]="FechaSalida"
+	      [ngModelOptions]="{standalone:true}">  
+	      </div>
+	    <div class="form-group col-md-6">
+	      <label for="inputState">Codigo Empleado</label>
+	      <select id="inputState" class="form-control">
+	        <option selected>Escoger...</option>
+	        <option>...</option>
+	      </select>
+	    </div>
+	    <div class="form-group col-md-6">
+	      <label for="FechaSalida">Fecha de Reservacion</label>
+	      <input type="date" class="form-control" id="inputCity" required
+	      [(ngModel)]="FechaSalida"
+	      [ngModelOptions]="{standalone:true}">  
+	    </div>
+	  </div>
+	  <button style="width:100%; height:50%" type="submit" class="btn btn-primary">Reservar</button>
+	</form>
+</div>
+ </div>
+</html>

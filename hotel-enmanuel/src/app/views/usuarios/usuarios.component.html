@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Hotel Enmanuel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="http://127.0.0.1:4200/menu">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_reservaciones">Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_incidencia">Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_empleados">Empleados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/mantenimiento_usuarios">Gestión de Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_detalleres">Detalle Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_documentos">Documentos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/huespedincidencia">Huesped Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_niveles_accesos">Niveles de Acceso</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/">Tipo de Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/registro_usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Check-out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div style= "text-align: center;margin: 10px">
+    <h4 text="text-muted">Sistema de Gestión de Hotel</h4>
+    <h6 text="text-muted">Sabanagrande, Francisco Morazán, Honduras</h6>
+  </div>
+   <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Registro de usuario</li>
+    </ol>
+  </nav>
+  <div style= "text-align: center;margin: 25px">
+    <h4 text="text-muted">Datos de usuario</h4>
+  </div>
+
+
+
+
+<div class="container-sm border rounded">
+  <div class="row">
+    <div class="col-8">
+    <div class="col-8 offset-5">
+<form action="/" enctype="multipart/form-data" method="post" ngNativeValidate #form autocomplete="off">
+  <div style="text-align:center;margin:10px">
+  
+  <div class="form-group">
+    <div style = "margin:50px">
+    <label for="inputNombreUsuario">Nombre Usuario</label>
+    <input type="text" class="form-control" id="inputNombreUsuario" required 
+    [(ngModel)]="usuarios.Nombre_Usuario"
+    [ngModelOptions]="{standalone: true}">
+  </div>
+  </div>
+  
+  <div class="form-group">
+     <div style = "margin:50px">
+    <label for="inputContrasena">Contraseña</label>
+    <input type="password" class="form-control" id="inputContrasena" required 
+    pattern = "[0-9|a-z|A-Z|_]+"
+    minlength = "8" 
+    maxlength = "20"
+    [(ngModel)]="usuarios.Contrasena"
+    [ngModelOptions]="{standalone: true}">
+  </div>
+  </div>
+
+  <div class="form-group">
+    <div style = "margin:50px">
+    <label for="SelectNivelAcceso">Nivel de Acceso</label>
+    <select class="form-control" id="SelectNivelAcceso" required
+    [(ngModel)]="usuarios.Cod_Nivel"
+    [ngModelOptions]="{standalone: true}">
+      <option selected value="">-Seleccione-</option>
+      <option *ngFor="let li of listado_niveles_accesos"
+      [value]="li.Cod_Nivel">{{li.Descripcion}}
+    </option>
+    </select>
+  </div>
+  </div>
+
+  <button type="submit" (click)="form.checkValidity()? insert_usuarios(): null" class="btn btn-primary">Registrar</button>
+  </div>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+</html>

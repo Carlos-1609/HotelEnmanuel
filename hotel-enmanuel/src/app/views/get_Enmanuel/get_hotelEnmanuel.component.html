@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Hotel Enmanuel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="http://127.0.0.1:4200/menu">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_reservaciones">Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_incidencia">Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_empleados">Empleados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/mantenimiento_usuarios">Gestión de Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_detalleres">Detalle Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_documentos">Documentos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/huespedincidencia">Huesped Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_niveles_accesos">Niveles de Acceso</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/">Tipo de Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/registro_usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Check-out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div style= "text-align: center;margin: 10px">
+    <h4 text="text-muted">Sistema de Gestión de Hotel</h4>
+    <h6 text="text-muted">Sabanagrande, Francisco Morazán, Honduras</h6>
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Incidencias</li>
+    </ol>
+  </nav>
+
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand"></a>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar Incidencias" aria-label="Search">
+    </form>
+  </nav>
+
+<dir class="container-sm border rounded" width="20%">
+      <form ngNativeValiate #form >
+              <div  >
+
+
+
+
+
+
+
+                  <div class="form-row container-md"  >
+
+                <div class="form-group col-md-9" >
+                  <label for="inputDes" class="nav-link">Descripcion:</label>
+                  <input type="text" class="form-control" id="inputDes" required 
+                  maxlength="25" 
+                   [(ngModel)]="incidencia.Descripcion"
+                   [ngModelOptions]="{standalone: true}">
+                </div>
+            
+
+
+               <div class="form-group col-md-2" style="margin: 42px">
+               <button type="submit"  class="btn btn-primary btn-lg btn-block"
+              (click)="form.checkValidity()? insert_incidencias():null">Ingresar</button>             
+                </div>
+              </div>
+
+              <div style= "text-align: center;margin: 10px">
+              <table class="table table-bordered">
+                <thead>
+
+                  <tr>
+                      <th scope="col" >Código Incidencia</th>
+                      <th scope="col">Descripción</th>
+                      <th scope="col">Modificar</th>
+                      <th scope="col">Borrar</th>
+                     </tr>
+
+                </thead>
+              <tbody>
+
+                 <tr *ngFor= "let x of listado_incidencias">
+                        <td>{{x.Cod_Incidencia}}</td>
+                        <td>{{x.Descripcion}}</td> 
+
+
+                        
+                    <td><button (click)= "UpdateIncidencia(x)" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Modificar</button></td>
+                    <td>
+                                  <button (click)="delete_incidencias(x.Cod_Incidencia)" type="button"  class="btn btn-danger" data-toggle="modal"  data-whatever="@getbootstrap">Borrar</button>
+                    </td>
+
+
+                  </tr>
+
+              </tbody>
+              </table>
+            </div>
+
+
+
+            </div>
+      </form>
+ </dir>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar Incidencia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" required>Código</label>
+            <input class="form-control" id="message-text"[(ngModel)]="incidencia.Cod_Incidencia" [ngModelOptions]="{standalone: true}" readonly>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-body">
+
+        <form ngNativeValiate #form1>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" required>Descripción:</label>
+            <input class="form-control" id="message-text" required
+            maxlength="25" 
+            [(ngModel)]="incidencia.Descripcion" 
+            [ngModelOptions]="{standalone: true}">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button"(click)="form1.checkValidity()? update_incidencia(incidencia.Cod_Incidencia): null"class="btn btn-primary" data-dismiss="modal">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+</html>
+
+
+
+
+

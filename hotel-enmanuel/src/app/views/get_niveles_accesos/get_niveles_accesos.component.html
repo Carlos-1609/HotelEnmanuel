@@ -1,0 +1,83 @@
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Hotel Enmanuel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="http://127.0.0.1:4200/menu">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_reservaciones">Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_incidencia">Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_empleados">Empleados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/mantenimiento_usuarios">Gestión de Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_detalleres">Detalle Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_documentos">Documentos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/huespedincidencia">Huesped Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_niveles_accesos">Niveles de Acceso</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/">Tipo de Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/registro_usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Check-out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<h1 class="text-success"> Listado de Niveles de accesos </h1>
+
+<table class="table table-striped table-sm">
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Descripcion</th>
+      <th>Borrar</th>
+      <th>Modificar</th>
+    </tr>
+	</thead>
+  <tbody>
+  	<tr *ngFor="let x of listado_niveles_accesos">
+  		<td>{{x.Cod_Nivel}}</td>
+  		<td>{{x.Descripcion}}</td>
+  		<td><button (click)="delete_nivel_acceso(x.Cod_Nivel)" class="btn btn-danger">Borrar</button></td>
+  		<td><button (click)="update_nivel_acceso(x.Cod_Nivel)" class="btn btn-primary">Modificar</button></td>
+  	</tr>
+  </tbody>
+</table>
+
+
+<h1 class="text-success">Insertar Tipo de Habitacion</h1>
+<div class="row mt-3 p-3">
+<div class="col-md-3">
+		<input 
+		type="text"
+		placeholder="Descripcion"
+		class="form-control"
+		[(ngModel)]="nivel_acceso.Descripcion"
+		>
+	</div>
+</div>
+<button (click)="insert_nivel_acceso()"class="btn btn-primary">Insertar</button>

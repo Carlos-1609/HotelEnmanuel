@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Hotel Enmanuel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="http://127.0.0.1:4200/menu">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_reservaciones">Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_incidencia">Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_empleados">Empleados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/mantenimiento_usuarios">Gestión de Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_detalleres">Detalle Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_documentos">Documentos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/huespedincidencia">Huesped Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_niveles_accesos">Niveles de Acceso</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/">Tipo de Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/registro_usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Check-out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div style= "text-align: center;margin: 10px">
+    <h4 text="text-muted" >Sistema de Gestión de Hotel</h4>
+    <h6 text="text-muted">Sabanagrande, Francisco Morazán, Honduras</h6>
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+
+      <li class="breadcrumb-item active" aria-current="page">Huesped Incidencias</li>
+    </ol>
+  </nav>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand"></a>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar Incidencias" aria-label="Search">
+    </form>
+  </nav>
+
+
+<dir class="container-sm border rounded" width="100%">
+
+<form  action="/" enclype="multipart/from-data" method="post" ngNativeValiate #form>
+  <div class="form-row container-md"  >
+
+
+    <div class="form-group col-md-6">
+      <label for="inputinci" class="nav-link"  >Codigo Incidencia:</label>
+      <select id="inputinci" class="form-control"  required
+      	[(ngModel)]="huespedincidencia.Cod_Incidencia"
+      	[ngModelOptions]="{standalone: true}">
+        <option selected value="">- Seleccionar Incidencia -</option>
+        <option *ngFor="let ec of listado_incidencias" [value]="ec.Cod_Incidencia">{{ec.Cod_Incidencia}}:{{ec.Descripcion}}</option>
+     
+      </select>
+
+    </div>
+
+        <div class="form-group col-md-6">
+      <label for="inputhues" class="nav-link">Codigo Huesped:</label>
+      <select id="inputhues" class="form-control" required
+       [(ngModel)]="huespedincidencia.Cod_Huesped"
+       [ngModelOptions]="{standalone: true}">
+        <option selected value="">- Seleccionar Huesped -</option>
+        <option *ngFor="let x of listado_Huesped" [value]="x.Cod_Huesped">
+         {{x.Cod_Huesped}}:{{x.Nombres}} {{x.Apellidos}}</option>
+
+
+
+      </select>
+    </div>
+
+
+        <div class="form-group col-md-3">
+      <label for="inputfe" class="nav-link">Fecha:</label>
+      <input type="date" class="form-control" id="inputfe" required
+      v [(ngModel)]="huespedincidencia.Fecha"
+       [ngModelOptions]="{standalone: true}">
+    </div>
+
+
+    <div class="form-group col-md-9">
+      <label for="inputDes" class="nav-link">Descripcion:</label>
+      <input type="text" class="form-control" id="inputDes"  required
+      values=""
+      maxlength="50" 
+       [(ngModel)]="huespedincidencia.Descripcion"
+       [ngModelOptions]="{standalone: true}">
+    </div>
+  </div>
+  
+   <div class="form-group col-md-2">
+ 	 <button type="submit" class="btn btn-primary" (click)="form.checkValidity()? insert_huespedincidecia() : null">Ingresar</button>
+ 	
+    </div>
+ 
+  
+  <table class="table table-bordered">
+    <thead>
+
+      <tr>
+          <th scope="col" >Código Huesped Incidencia</th>        
+          <th scope="col" >Código Incidencia</th>
+        	<th scope="col" >Código Huesped</th>          
+          <th scope="col">Fecha</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Acciones</th>
+         </tr>
+
+    </thead>
+  <tbody>
+
+     <tr *ngFor= "let x of listado_incidenciashuesped">
+            <td>{{x.Cod_HistorialIncideciaHuesped}}</td>      
+            <td>{{x.Cod_Incidencia}}</td>
+           <td>{{x.Cod_Huesped}}</td>            
+            <td>{{x.Fecha}}</td> 
+            <td>{{x.Descripcion}}</td> 
+            <td>
+            	
+            	<button  (click)="preIncidenciaHuesped(x)" type="button" class="btn btn-info" 
+            data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Modificar</button> 
+
+            <button (click)="delete_huespedincidecia(x.Cod_HistorialIncideciaHuesped)" type="button"  class="btn btn-danger" data-toggle="modal" data-whatever="@getbootstrap">Borrar</button>
+        </td> 
+          
+      </tr>
+  </tbody>
+  </table>
+
+</form>
+ </dir>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form ngNativeValiate #form1>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Codigo Huesped Incidencia:</label>
+            <input [(ngModel)]="huespedincidencia.Cod_HistorialIncideciaHuesped"  [ngModelOptions]="{standalone: true}" 
+            type="text" class="form-control" id="recipient-name" readonly>
+          </div>
+
+
+        <div class="form-group">
+        <label for="inputinci1" class="col-form-label">Codigo Incidencia:</label> 
+        <select id="inputinci1" class="form-control"  required
+        [(ngModel)]="huespedincidencia.Cod_Incidencia"
+        [ngModelOptions]="{standalone: true}">
+        <option selected value="">- Seleccionar Incidencia -</option>
+        <option *ngFor="let ec of listado_incidencias" [value]="ec.Cod_Incidencia">{{ec.Cod_Incidencia}}:{{ec.Descripcion}}</option>
+        </select>
+        </div>
+
+
+
+          <div class="form-group">
+          <label for="inputhues1" class="col-form-label">Codigo Huesped:</label> 
+           <select id="inputhues1" class="form-control" required value
+           [(ngModel)]="huespedincidencia.Cod_Huesped"
+           [ngModelOptions]="{standalone: true}">
+          <option selected value="">- Seleccionar Huesped -</option>
+          <option *ngFor="let x of listado_Huesped" [value]="x.Cod_Huesped">
+           {{x.Cod_Huesped}}:{{x.Nombres}} {{x.Apellidos}}</option>
+           </select>
+          </div>
+
+
+
+
+
+          <div class="form-group">
+            <label for="inputfe1" class="col-form-label" >Fecha:</label>
+                  <input type="date" class="form-control" id="inputfe1"  required
+                  [ngModel]="huespedincidencia.Fecha | date:'yyyy-MM-dd' : 'UTC'"
+                  (ngModelChange)="huespedincidencia.Fecha= $event"
+                  [ngModelOptions]="{standalone: true}">
+          </div>
+
+
+          <div class="form-group">
+            <label for="inputDes1" class="col-form-label">Descripcion:</label>
+          <input type="text" class="form-control" id="inputDes1" required 
+           [(ngModel)]="huespedincidencia.Descripcion"
+           [ngModelOptions]="{standalone: true}">
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary"  (click)="form1.checkValidity()?  update_incidencia(huespedincidencia.Cod_HistorialIncideciaHuesped): null" data-dismiss="modal" >Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</html>
+
+
+
+
+

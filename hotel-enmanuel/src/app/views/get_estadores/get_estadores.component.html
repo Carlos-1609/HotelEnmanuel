@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Hotel Enmanuel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="http://127.0.0.1:4200/menu">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_reservaciones">Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_incidencia">Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_empleados">Empleados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/mantenimiento_usuarios">Gestión de Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_detalleres">Detalle Reservaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_documentos">Documentos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/huespedincidencia">Huesped Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/listado_niveles_accesos">Niveles de Acceso</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/">Tipo de Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:4200/registro_usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Check-out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+   <div style= "text-align: center;margin: 10px">
+    <h4 text="text-muted">Sistema de Gestión de Hotel</h4>
+    <h6 text="text-muted">Sabanagrande, Francisco Morazán, Honduras</h6>
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Estados Reservacion</li>
+    </ol>
+  </nav>
+
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand"></a>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar Estado Reservacion" aria-label="Search">
+    </form>
+  </nav>
+
+<div style= "text-align: center;margin: 10px">
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Codigo Estado Reservacion</th>
+			<th>Descripcion</th>
+			<th>Borrar</th>
+			<th>Modificar</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let x of listado_estadores">
+			<td>{{x.Cod_Estado_Reservacion}}</td>
+			<td>{{x.Descripcion}}</td>
+			<td><button (click)="delete_estadores(x.Cod_Estado_Reservacion)" class="btn btn-danger">Borrar</button></td>
+			<td><button (click)= "onPreUpdateEstadores(x)" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Modificar</button></td>
+		</tr>	
+	</tbody>
+</table>
+</div>
+
+<h6 style= "margin: 10px" class="text-dark">Insertar Estado Reservacion</h6> 
+
+<div class="row mt-3 p-3">
+	<div class="col-md-3">
+		<input
+			type="text"
+			placeholder="Descripcion"
+			class="form-control"
+      required
+			[(ngModel)]="estadore.Descripcion"
+		>
+	</div>
+</div>
+<button style="margin: 10px" (click)="insert_estadores()" class="btn btn-primary">Insertar</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar Estado Reservacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" required>Código</label>
+            <textarea class="form-control" id="message-text" [(ngModel)] = "estadore.Cod_Estado_Reservacion" [ngModelOptions]= "{standalone: true}" readonly></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" required>Descripción:</label>
+            <textarea class="form-control" id="message-text" [(ngModel)] = "estadore.Descripcion" [ngModelOptions]= "{standalone: true}"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" (click)= "update_estadores(estadore.Cod_Estado_Reservacion)"class="btn btn-primary">Aplicar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</html>
